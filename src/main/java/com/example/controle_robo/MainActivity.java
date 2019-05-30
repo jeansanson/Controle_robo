@@ -17,21 +17,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-/*
-        ListView pacientes = findViewById(R.id.lvBook);
+
+        ListView robos = findViewById(R.id.listRobos);
 
         DAL dal = new DAL(this);
-        Cursor cursor = dal.loadAll();
 
-        String[] fields = new String[] {CreateDatabase.NOME, CreateDatabase.MORTALIDADE, CreateDatabase.IDADE};
-        int[] ids = {R.id.nomeIn, R.id.mortalidade, R.id.idade};
+        //String[] fields = new String[] {CreateDatabase.NOME, CreateDatabase.MORTALIDADE, CreateDatabase.IDADE};
+        //int[] ids = {R.id.nomeIn, R.id.mortalidade, R.id.idade};
 
-        //Log.d(TAG, "onCreate: id " + cursor.getInt(0) + " title " + cursor.getString(1));
-        Log.d(TAG, "onCreate: " + cursor.getCount());
-        SimpleCursorAdapter adapter = new SimpleCursorAdapter(MainActivity.this,
-                R.layout.paciente_layout, cursor, fields, ids, 0);
+        //Log.d(TAG, "onCreate: " + cursor.getCount());
+        //SimpleCursorAdapter adapter = new SimpleCursorAdapter(MainActivity.this,
+        //        R.layout.paciente_layout, cursor, fields, ids, 0);
 
-        pacientes.setAdapter(adapter);
+        //pacientes.setAdapter(adapter);
 
         Button btnAdd = findViewById(R.id.btnAdd);
         btnAdd.setOnClickListener(new View.OnClickListener() {
@@ -41,6 +39,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        */
+
     }
 }

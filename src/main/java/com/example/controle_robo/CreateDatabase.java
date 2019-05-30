@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class CreateDatabase extends SQLiteOpenHelper {
 
     public static final String DB_NAME = "controle_robos.db";
-    public static final String TABLE = "robos";
+    public static final String ROBOS = "robos";
     public static final String ID = "_id";
     public static final String NOME = "nome";
     public static final String STATUS = "status";
@@ -28,7 +28,7 @@ public class CreateDatabase extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String sql = "CREATE TABLE " + TABLE + " ( "
+        String sql = "CREATE TABLE " + ROBOS + " ( "
                 + "_id integer primary key autoincrement, " +
                 "nome text not null, " +
                 "status tinyint not null, " +
@@ -47,7 +47,7 @@ public class CreateDatabase extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE);
+        db.execSQL("DROP TABLE IF EXISTS " + ROBOS);
         onCreate(db);
     }
 }
