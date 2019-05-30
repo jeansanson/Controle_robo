@@ -22,7 +22,7 @@ public class InsertActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 DAL dal = new DAL(InsertActivity.this);
-                EditText etNome = findViewById(R.id.etNome);
+               /* EditText etNome = findViewById(R.id.etNome);
                 EditText etIdade = findViewById(R.id.etIdade);
                 EditText etLeucocito = findViewById(R.id.leucocitoIn);
                 EditText etGlicemia = findViewById(R.id.glicemiaIn);
@@ -65,7 +65,7 @@ public class InsertActivity extends AppCompatActivity {
 
                 pontuacaoOut.setText(pontuacao.toString());
                 mortalidadeOut.setText(mortalidade.toString()+"%");
-
+*/
                 if (dal.insert(nome, idade, leucocitos, glicemia, astTgo, ldh, litiase, pontuacao, mortalidade)) {
                     Toast.makeText(InsertActivity.this,
                             "Registro Inserido com sucesso!", Toast.LENGTH_LONG).show();

@@ -6,6 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import java.sql.Date;
+
 public class DAL {
     private static final String TAG = "DAL";
 
@@ -16,7 +18,18 @@ public class DAL {
         database = new CreateDatabase(context);
     }
 
-    public boolean insert(String nome, String categoria, Integer leucocitos, Integer glicemia, Integer asttgo, Integer ldh, Boolean litiaseBiliar, Integer pontuacao, Integer mortalidade) {
+    public boolean insert(
+            String nome,
+            Integer status,
+            String categoria,
+            Date data_insercao,
+            Date data_inicio,
+            Date data_termino,
+            Date data_inicio_previsao,
+            Date data_termino_previsao,
+            String responsavel,
+            String localizacao
+            ) {
         ContentValues values;
         long result;
 
@@ -25,11 +38,13 @@ public class DAL {
         values.put(CreateDatabase.NOME, nome);
         values.put(CreateDatabase.STATUS, status);
         values.put(CreateDatabase.CATEGORIA, categoria);
-        values.put(CreateDatabase.DATA_INICIO, data_inicio);
-        values.put(CreateDatabase.DATA_TERMINO, data_termino);
-        values.put(CreateDatabase.DATA_INICIO_PREVISAO, data_inicio_previsao);
-        values.put(CreateDatabase.DATA_TERMINO_PREVISAO, data_termino_previsao);
+        values.put(CreateDatabase.DATA_INSERCAO, String.valueOf(data_insercao));
+        values.put(CreateDatabase.DATA_INICIO, String.valueOf(data_inicio));
+        values.put(CreateDatabase.DATA_TERMINO, String.valueOf(data_termino));
+        values.put(CreateDatabase.DATA_INICIO_PREVISAO, String.valueOf(data_inicio_previsao));
+        values.put(CreateDatabase.DATA_TERMINO_PREVISAO, String.valueOf(data_termino_previsao));
         values.put(CreateDatabase.RESPONSAVEL, responsavel);
+        values.put(CreateDatabase.LOCALIZACAO, localizacao);
 
         result = db.insert(CreateDatabase.TABLE, null, values);
         db.close();
@@ -58,7 +73,7 @@ public class DAL {
         }
         return  true;
     }
-
+/*
     public boolean update(int id, String nome, Integer idade, Integer leucocitos, Integer glicemia, Integer asttgo, Integer ldh, Boolean litiaseBiliar, Integer pontuacao, Integer mortalidade) {
         ContentValues values;
         long result;
@@ -90,7 +105,7 @@ public class DAL {
 
         return true;
     }
-
+*/
     public Cursor findById(int id) {
         Cursor cursor;
         String where = "_id = ?";
@@ -114,9 +129,6 @@ public class DAL {
         String[] fields = {CreateDatabase.ID, CreateDatabase.NOME, CreateDatabase.MORTALIDADE, CreateDatabase.IDADE};
         db = database.getReadableDatabase();
 
-        // SELECT _id, title FROM book
-        // String sql = "SELECT _id, title FROM book";
-        //cursor = db.rawQuery(sql, null);
         cursor = db.query(CreateDatabase.TABLE, fields, null,
                 null, null, null,
                 null, null);
