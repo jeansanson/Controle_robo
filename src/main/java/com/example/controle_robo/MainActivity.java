@@ -20,7 +20,6 @@ public class MainActivity extends AppCompatActivity {
 
         ListView robos = findViewById(R.id.listRobos);
 
-        DAL dal = new DAL(this);
 
         //String[] fields = new String[] {CreateDatabase.NOME, CreateDatabase.MORTALIDADE, CreateDatabase.IDADE};
         //int[] ids = {R.id.nomeIn, R.id.mortalidade, R.id.idade};

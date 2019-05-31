@@ -6,21 +6,18 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
-import java.sql.Date;
-
-public class DalRobos {
-    private static final String TAG = "Dal Robo";
+public class DalLocalizacoes {
+    private static final String TAG = "Dal Localizações";
 
     private SQLiteDatabase db;
     private CreateDatabase database;
 
-    public DalRobos(Context context) {
+    public DalLocalizacoes(Context context) {
         database = new CreateDatabase(context);
     }
 
     public boolean insert(
-            String nome,
-            String categoria
+            String nome
     ) {
         ContentValues values;
         long result;
@@ -28,9 +25,9 @@ public class DalRobos {
         db = database.getWritableDatabase();
         values = new ContentValues();
         values.put(CreateDatabase.NOME, nome);
-        values.put(CreateDatabase.CATEGORIA, categoria);
 
-        result = db.insert(CreateDatabase.ROBOS, null, values);
+
+        result = db.insert(CreateDatabase.LOCALIZACOES, null, values);
         db.close();
 
 
@@ -42,40 +39,38 @@ public class DalRobos {
         return true;
     }
 
-    public boolean deleteById(int id){
+    public boolean deleteById(int id) {
 
         String where = "_id = ?";
-        String[] args = { String.valueOf(id) };
+        String[] args = {String.valueOf(id)};
         db = database.getReadableDatabase();
         long result;
 
-        result = db.delete(CreateDatabase.ROBOS, where, args);
+        result = db.delete(CreateDatabase.LOCALIZACOES, where, args);
         db.close();
 
-        if(result == -1){
+        if (result == -1) {
             Log.e(TAG, "delete: Erro deletando registro");
         }
-        return  true;
+        return true;
     }
 
     public boolean update(
             Integer id,
-            String nome,
-            String categoria
+            String nome
     ) {
         ContentValues values;
         long result;
 
         String where = "_id = ?";
-        String[] args = { String.valueOf(id) };
+        String[] args = {String.valueOf(id)};
 
         db = database.getWritableDatabase();
 
         values = new ContentValues();
         values.put(CreateDatabase.NOME, nome);
-        values.put(CreateDatabase.CATEGORIA, categoria);
 
-        result = db.update(CreateDatabase.ROBOS, values, where, args);
+        result = db.update(CreateDatabase.LOCALIZACOES, values, where, args);
         db.close();
 
 
@@ -90,11 +85,11 @@ public class DalRobos {
     public Cursor findById(int id) {
         Cursor cursor;
         String where = "_id = ?";
-        String[] args = { String.valueOf(id) };
+        String[] args = {String.valueOf(id)};
 
         db = database.getReadableDatabase();
 
-        cursor = db.query(CreateDatabase.ROBOS, null,
+        cursor = db.query(CreateDatabase.LOCALIZACOES, null,
                 where, args, null, null, null, null);
 
         if (cursor != null) {
@@ -110,7 +105,7 @@ public class DalRobos {
         String[] fields = {CreateDatabase.ID, CreateDatabase.NOME};
         db = database.getReadableDatabase();
 
-        cursor = db.query(CreateDatabase.ROBOS, fields, null,
+        cursor = db.query(CreateDatabase.LOCALIZACOES, fields, null,
                 null, null, null,
                 null, null);
 
