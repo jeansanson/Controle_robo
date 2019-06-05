@@ -16,20 +16,56 @@ import java.util.List;
 
 public class JSONreader {
 
-    public static void jsonToSql(String jsonString) {
+    public void jsonToLists (String jsonString, List robotList, List categoryList, List responsibleList, List localizationList) {
         try {
             JSONObject json = new JSONObject(jsonString);
-            JSONArray robos = json.getJSONArray("pessoas");
-
+            JSONArray robos = json.getJSONArray("robos");
+            JSONArray categorias = json.getJSONArray("categorias");
+            JSONArray responsaveis = json.getJSONArray("responsaveis");
+            JSONArray localizacoes = json.getJSONArray("localizacoes");
             String TAG = "LeFaturasDeJSONString";
+
             for (int i = 0; i < robos.length(); i++) {
                 JSONObject robo = robos.getJSONObject(i);
-
-
-
-                Log.d(TAG, "leFaturasDeJSONString: Robo inserido em database");
-
+                Robo r = new Robo(
+                        robo.getInt("id"),
+                        robo.getString("nome"),
+                        robo.getString("categoria")
+                );
+                robotList.add(r);
+                Log.d(TAG, "leFaturasDeJSONString: Robo inserido em database id:"+r.getId());
             }
+
+            for (int i = 0; i < categorias.length(); i++) {
+                JSONObject categoria = categorias.getJSONObject(i);
+                Categoria c = new Categoria(
+                        categoria.getInt("id"),
+                        categoria.getString("nome")
+                );
+                categoryList.add(c);
+                Log.d(TAG, "leFaturasDeJSONString: Categoria inserida em database id:"+c.getId());
+            }
+
+            for (int i = 0; i < responsaveis.length(); i++) {
+                JSONObject responsavel = responsaveis.getJSONObject(i);
+                Categoria r = new Categoria(
+                        responsavel.getInt("id"),
+                        responsavel.getString("nome")
+                        );
+                responsibleList.add(r);
+                Log.d(TAG, "leFaturasDeJSONString: Responsável inserido em database id:"+r.getId());
+            }
+
+            for (int i = 0; i < localizacoes.length(); i++) {
+                JSONObject localizacao = localizacoes.getJSONObject(i);
+                Categoria l = new Categoria(
+                        localizacao.getInt("id"),
+                        localizacao.getString("cidade")
+                );
+                localizationList.add(l);
+                Log.d(TAG, "leFaturasDeJSONString: Localização inserida em database id:"+l.getId());
+            }
+
         } catch (JSONException e) {
             System.err.println("Erro fazendo parse de String JSON: " + e.getMessage());
         }

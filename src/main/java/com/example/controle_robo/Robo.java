@@ -10,9 +10,26 @@ public class Robo {
     public Robo() {
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
     public Robo(int id, String nome, String categoria) {
         this.id = id;
         this.nome = nome;
         this.categoria = categoria;
+    }
+
+    @Override
+    public String toString() {
+        return nome;
     }
 }
