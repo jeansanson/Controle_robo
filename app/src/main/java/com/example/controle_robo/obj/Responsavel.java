@@ -1,4 +1,4 @@
-package com.example.controle_robo;
+package com.example.controle_robo.obj;
 
 public class Responsavel {
     int id;

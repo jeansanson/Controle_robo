@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.example.controle_robo.obj.Robo;
+
 import java.util.List;
 
 public class RoboViewAdapter extends ArrayAdapter {

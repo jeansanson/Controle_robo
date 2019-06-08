@@ -6,6 +6,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.ListView;
 
+import com.example.controle_robo.obj.Categoria;
+import com.example.controle_robo.obj.Localizacao;
+import com.example.controle_robo.obj.Responsavel;
+import com.example.controle_robo.obj.Robo;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;

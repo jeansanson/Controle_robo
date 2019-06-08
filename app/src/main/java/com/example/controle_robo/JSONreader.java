@@ -2,6 +2,9 @@ package com.example.controle_robo;
 
 import android.util.Log;
 
+import com.example.controle_robo.obj.Categoria;
+import com.example.controle_robo.obj.Robo;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
