@@ -39,18 +39,14 @@ public class MainActivity extends AppCompatActivity {
         responsibleList = new ArrayList<>();
         localizationList = new ArrayList<>();
 
-        DownloadDeDados downloadDeDados = new DownloadDeDados();
+        download(); //operação assíncrona
+        showListView();
+        robotListViewOnItemClickListener();
 
-        try {
-            downloadDeDados.execute("http://www.mocky.io/v2/5cf709a33200008a288cd582").get();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+    }
 
+    private void robotListViewOnItemClickListener() {
         robotListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //Seu codigo aqui
@@ -60,9 +56,25 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("category", robotList.get(position).getCategory());
                 startActivity(intent);
             }
-
         });
+    }
 
+    private void showListView() {
+        RoboViewAdapter pokeListAdapter = new RoboViewAdapter(MainActivity.this,
+                R.layout.list_robots, robotList);
+        robotListView.setAdapter(pokeListAdapter);
+    }
+
+    private void download() {
+        DownloadDeDados downloadDeDados = new DownloadDeDados();
+
+        try {
+            downloadDeDados.execute("http://www.mocky.io/v2/5cf709a33200008a288cd582").get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     private class DownloadDeDados extends AsyncTask<String, Void, String> {
@@ -72,7 +84,6 @@ public class MainActivity extends AppCompatActivity {
             JSONreader jsonReader = new JSONreader();
             String json = s;
             jsonReader.jsonToLists(json, robotList, categoryList, responsibleList, localizationList);
-            teste();
         }
 
         @Override
@@ -86,11 +97,5 @@ public class MainActivity extends AppCompatActivity {
 
             return json;
         }
-    }
-
-    private void teste() {
-        RoboViewAdapter pokeListAdapter = new RoboViewAdapter(MainActivity.this,
-                R.layout.list_robots, robotList);
-        robotListView.setAdapter(pokeListAdapter);
     }
 }
