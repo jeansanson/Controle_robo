@@ -1,9 +1,12 @@
 package com.example.controle_robo;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.controle_robo.obj.Categoria;
@@ -46,11 +49,20 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        //Log.d(TAG, "onCreate: " + cursor.getCount());
-        //SimpleCursorAdapter adapter = new SimpleCursorAdapter(MainActivity.this,
-        //        R.layout.paciente_layout, cursor, fields, ids, 0);
+        robotListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
-        //pacientes.setAdapter(adapter);
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //Seu codigo aqui
+                Intent intent = new Intent(MainActivity.this, DetailRobot.class);
+                intent.putExtra("id", robotList.get(position).getId());
+                intent.putExtra("name", robotList.get(position).getName());
+                intent.putExtra("category", robotList.get(position).getCategory());
+                startActivity(intent);
+            }
+
+        });
+
     }
 
     private class DownloadDeDados extends AsyncTask<String, Void, String> {

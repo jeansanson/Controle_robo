@@ -4,32 +4,29 @@ import java.sql.Date;
 
 public class Robo {
     int id;
-    String nome;
-    String categoria;
+    String name;
+    String category;
 
-    public Robo() {
+    public Robo(int id, String name, String category) {
+        this.id = id;
+        this.name = name;
+        this.category = category;
     }
 
     public int getId() {
         return id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
-    public String getCategoria() {
-        return categoria;
-    }
-
-    public Robo(int id, String nome, String categoria) {
-        this.id = id;
-        this.nome = nome;
-        this.categoria = categoria;
+    public String getCategory() {
+        return category;
     }
 
     @Override
     public String toString() {
-        return nome;
+        return name;
     }
 }
