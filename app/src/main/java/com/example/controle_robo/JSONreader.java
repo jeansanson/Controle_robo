@@ -3,6 +3,7 @@ package com.example.controle_robo;
 import android.util.Log;
 
 import com.example.controle_robo.obj.Categoria;
+import com.example.controle_robo.obj.Relacionamento;
 import com.example.controle_robo.obj.Robo;
 
 import org.json.JSONArray;
@@ -19,7 +20,7 @@ import java.util.List;
 
 public class JSONreader {
 
-    public void jsonToLists (String jsonString, List robotList, List categoryList, List responsibleList, List localizationList) {
+    public void jsonToLists (String jsonString, List robotList, List categoryList, List responsibleList, List localizationList, List relationList) {
         try {
             JSONObject json = new JSONObject(jsonString);
             JSONArray robos = json.getJSONArray("robos");
@@ -68,6 +69,17 @@ public class JSONreader {
                 localizationList.add(l);
                 Log.d(TAG, "leFaturasDeJSONString: Localização inserida em database id:"+l.getId());
             }
+            for (int i = 0; i < robos.length(); i++) {
+                JSONObject robo = robos.getJSONObject(i);
+                Relacionamento r = new Relacionamento(
+                        robo.getInt("id"),
+                        robo.getString("nome"),
+                        robo.getString("categoria")
+                );
+                relationList.add(r);
+                Log.d(TAG, "leFaturasDeJSONString: Robo inserido em database id:"+r.getId());
+            }
+
 
         } catch (JSONException e) {
             System.err.println("Erro fazendo parse de String JSON: " + e.getMessage());

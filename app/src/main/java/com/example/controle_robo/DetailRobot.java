@@ -17,12 +17,6 @@ public class DetailRobot extends AppCompatActivity {
     private TextView robotCategory;
     private static final String TAG = "MostrarPokemonActivity";
 
-    public void voltar(View view) {
-        Intent intent = new Intent(DetailRobot.this, MainActivity.class);
-        startActivity(intent);
-    }
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -2,18 +2,15 @@ package com.example.controle_robo.obj;
 
 public class Localizacao {
     int id;
-    String cidade;
+    String city;
 
     public Localizacao(int id, String cidade) {
         this.id = id;
-        this.cidade = cidade;
+        this.city = cidade;
     }
 
     public int getId() {
         return id;
     }
 
-    public String getCidade() {
-        return cidade;
-    }
 }

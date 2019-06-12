@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.example.controle_robo.obj.Relacionamento;
 import com.example.controle_robo.obj.Robo;
 
 import java.util.List;
@@ -17,9 +18,9 @@ public class RoboViewAdapter extends ArrayAdapter {
     private static final String TAG = "RoboViewAdapter";
     private int layoutResource;
     private LayoutInflater layoutInflater;
-    private List<Robo> roboList;
+    private List<Relacionamento> roboList;
 
-    public RoboViewAdapter(Context context, int resource, List<Robo> roboList) {
+    public RoboViewAdapter(Context context, int resource, List<Relacionamento> roboList) {
         super(context, resource);
         this.layoutResource = resource;
         this.layoutInflater = LayoutInflater.from(context);
@@ -46,11 +47,11 @@ public class RoboViewAdapter extends ArrayAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        Robo roboAtual = roboList.get(position);
+        Relacionamento roboAtual = roboList.get(position);
 
-        viewHolder.tvRoboName.setText(roboAtual.getName());
+        viewHolder.tvRoboName.setText(roboAtual.getRob_name());
         viewHolder.tvRoboId.setText(String.valueOf(roboAtual.getId()));
-        viewHolder.tvRoboCategory.setText(roboAtual.getCategory());
+        viewHolder.tvRoboCategory.setText(roboAtual.getRob_category());
 
         return convertView;
     }

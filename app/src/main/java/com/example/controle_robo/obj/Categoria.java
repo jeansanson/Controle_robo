@@ -2,18 +2,15 @@ package com.example.controle_robo.obj;
 
 public class Categoria {
     int id;
-    String nome;
+    String name;
 
     public Categoria(int id, String nome) {
         this.id = id;
-        this.nome = nome;
+        this.name = nome;
     }
 
     public int getId() {
         return id;
     }
 
-    public String getNome() {
-        return nome;
-    }
 }

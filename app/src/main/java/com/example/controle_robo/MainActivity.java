@@ -11,6 +11,7 @@ import android.widget.ListView;
 
 import com.example.controle_robo.obj.Categoria;
 import com.example.controle_robo.obj.Localizacao;
+import com.example.controle_robo.obj.Relacionamento;
 import com.example.controle_robo.obj.Responsavel;
 import com.example.controle_robo.obj.Robo;
 
@@ -25,19 +26,21 @@ public class MainActivity extends AppCompatActivity {
     private List<Categoria> categoryList;
     private List<Responsavel> responsibleList;
     private List<Localizacao> localizationList;
+    private List<Relacionamento> relationList;
     private ListView robotListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        //1q2w3e4r5t - jeanletrutzin@gmail.com
         robotListView = findViewById(R.id.listRobos);
 
         robotList = new ArrayList<>();
         categoryList = new ArrayList<>();
         responsibleList = new ArrayList<>();
         localizationList = new ArrayList<>();
+        relationList = new ArrayList<>();
 
         download(); //operação assíncrona
         showListView();
@@ -61,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void showListView() {
         RoboViewAdapter pokeListAdapter = new RoboViewAdapter(MainActivity.this,
-                R.layout.list_robots, robotList);
+                R.layout.list_robots, relationList);
         robotListView.setAdapter(pokeListAdapter);
     }
 
@@ -83,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(String s) {
             JSONreader jsonReader = new JSONreader();
             String json = s;
-            jsonReader.jsonToLists(json, robotList, categoryList, responsibleList, localizationList);
+            jsonReader.jsonToLists(json, robotList, categoryList, responsibleList, localizationList, relationList);
         }
 
         @Override
