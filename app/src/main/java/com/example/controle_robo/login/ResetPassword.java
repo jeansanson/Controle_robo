@@ -27,7 +27,7 @@ public class ResetPassword extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reset_password);
 
-        Toast.makeText(this, "Anota essa senha palhaço", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Não deixe o campo vazio", Toast.LENGTH_SHORT).show();
 
         btnResetPassword = findViewById(R.id.btnResetPassword);
         etEmail = findViewById(R.id.etEmail);
@@ -44,8 +44,6 @@ public class ResetPassword extends AppCompatActivity {
                 resetPassword(email);
             }
         });
-
-
     }
 
     private void resetPassword(String email) {
