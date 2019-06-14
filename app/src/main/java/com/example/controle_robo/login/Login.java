@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.controle_robo.MainActivity;
@@ -23,6 +25,8 @@ public class Login extends AppCompatActivity {
     private EditText barraSenha;
     private Button btnLogin;
     private Button btnNovo;
+    private ImageView imvLogo;
+    private TextView tvResetSenha;
 
     private FirebaseAuth firebaseAuth;
 
@@ -38,6 +42,12 @@ public class Login extends AppCompatActivity {
         barraSenha = findViewById(R.id.barraSenha);
         btnLogin = findViewById(R.id.btnLogin);
         btnNovo = findViewById(R.id.btnNovo);
+        imvLogo = findViewById(R.id.imvLogo);
+        tvResetSenha = findViewById(R.id.tvResetSenha);
+
+        //Logo do grupo
+        imvLogo.setImageResource(R.drawable.logo);
+
 
         //chamando o botão para o cadastro de um novo email
         btnNovo.setOnClickListener(new View.OnClickListener() {
@@ -54,6 +64,15 @@ public class Login extends AppCompatActivity {
                 String email = barraEmail.getText().toString().trim();
                 String senha = barraSenha.getText().toString().trim();
                 login(email, senha);
+            }
+        });
+
+        //Text Reset Senha
+        tvResetSenha.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Login.this, ResetPassword.class);
+                startActivity(intent);
             }
         });
 
