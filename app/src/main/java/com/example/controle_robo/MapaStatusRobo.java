@@ -5,14 +5,27 @@ import java.util.Map;
 
 public class MapaStatusRobo {
 
-    public final Map<Integer,String> status = new HashMap<Integer, String>();
+    private Map<Integer,String> status = new HashMap<Integer, String>();
 
-    public void loadStatus(){
-        status.put(0,"Descartado");
-        status.put(1,"Pronto");
-        status.put(2,"Revisão pendente");
-        status.put(3,"Necessita reparos");
-        status.put(4,"Em produção");
-        status.put(5,"Em manutenção");
+    public Map loadStatus(){
+        status.put(-1,"indefinido");
+        status.put(0,"descartado");
+        status.put(1,"pronto");
+        status.put(2,"revisão pendente");
+        status.put(3,"necessita reparos");
+        status.put(4,"em produção");
+        status.put(5,"em manutenção");
+
+        return status;
+    }
+
+    public Integer getKey(String status, Map statusMap){
+        int aux=-1;
+        for(int i=-1;i<statusMap.size();i++){
+             if (status.compareTo(statusMap.get(i).toString())==0) {
+                 aux=i;
+             }
+        }
+        return aux;
     }
 }

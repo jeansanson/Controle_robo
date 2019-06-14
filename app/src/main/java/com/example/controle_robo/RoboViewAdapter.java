@@ -49,9 +49,9 @@ public class RoboViewAdapter extends ArrayAdapter {
 
         Relacionamento roboAtual = roboList.get(position);
 
-        viewHolder.tvRoboName.setText(roboAtual.getRob_name());
+        viewHolder.tvRoboName.setText(roboAtual.getRobName());
         viewHolder.tvRoboId.setText(String.valueOf(roboAtual.getId()));
-        viewHolder.tvRoboCategory.setText(roboAtual.getRob_category());
+        viewHolder.tvRoboCategory.setText(roboAtual.getRobCategory());
 
         return convertView;
     }

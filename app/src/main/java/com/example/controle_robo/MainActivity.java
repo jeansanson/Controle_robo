@@ -22,27 +22,27 @@ import java.util.concurrent.ExecutionException;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
+    public static final String REL = "relacionamento";
     private List<Robo> robotList;
     private List<Categoria> categoryList;
     private List<Responsavel> responsibleList;
     private List<Localizacao> localizationList;
     private List<Relacionamento> relationList;
-    private ListView robotListView;
+    public ListView robotListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //1q2w3e4r5t - jeanletrutzin@gmail.com
         robotListView = findViewById(R.id.listRobos);
-
         robotList = new ArrayList<>();
         categoryList = new ArrayList<>();
         responsibleList = new ArrayList<>();
         localizationList = new ArrayList<>();
         relationList = new ArrayList<>();
 
-        download(); //operação assíncrona
+
+        download();
         showListView();
         robotListViewOnItemClickListener();
 
@@ -54,9 +54,7 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //Seu codigo aqui
                 Intent intent = new Intent(MainActivity.this, DetailRobot.class);
-                intent.putExtra("id", robotList.get(position).getId());
-                intent.putExtra("name", robotList.get(position).getName());
-                intent.putExtra("category", robotList.get(position).getCategory());
+                intent.putExtra(REL, relationList.get(position));
                 startActivity(intent);
             }
         });

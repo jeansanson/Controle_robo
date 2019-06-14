@@ -15,6 +15,7 @@
         <activity android:name=".login.Cadastro"></activity>
         <activity android:name=".MainActivity" />
         <activity android:name=".DetailRobot" />
+        <activity android:name=".UpdateRobot" />
         <activity android:name=".login.Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
