@@ -1,6 +1,7 @@
 package com.example.controle_robo.login;
 
 import android.content.Intent;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -51,13 +52,18 @@ public class Cadastro extends AppCompatActivity {
 
     }
 
-    private void CriarUsuario(String email, String senha) {
+    private void CriarUsuario(final String email, final String senha) {
         firebaseAuth.createUserWithEmailAndPassword(email, senha).addOnCompleteListener(Cadastro.this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    Toast.makeText(Cadastro.this, "Cadastro realizado Com Sucesso", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(Cadastro.this, Login.class);  //Fez login vai para outra activity
+
+                    intent.putExtra("email",email);
+                    intent.putExtra("senha",senha);
+
+                    Toast.makeText(Cadastro.this, "Cadastro realizado Com Sucesso", Toast.LENGTH_SHORT).show();
+
                     startActivity(intent);
                     finish();
                 }

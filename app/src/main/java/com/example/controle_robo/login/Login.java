@@ -1,6 +1,7 @@
 package com.example.controle_robo.login;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -24,6 +25,8 @@ public class Login extends AppCompatActivity {
     private Button btnNovo;
 
     private FirebaseAuth firebaseAuth;
+
+    private SharedPreferences pref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +56,19 @@ public class Login extends AppCompatActivity {
                 login(email, senha);
             }
         });
+
+
+        Bundle bundle = getIntent().getExtras();
+
+        if(bundle != null){
+            String email2 = bundle.getString("email");
+            String senha2 = bundle.getString("senha");
+            barraEmail.setText(email2.toString());
+            barraSenha.setText(senha2.toString());
+        }
+
+        //barraEmail.setText(email2.toString());
+//        barraSenha.setText(dados2.getString("senha").toString());
     }
     private void login(String email, String senha) {
         firebaseAuth.signInWithEmailAndPassword(email, senha).addOnCompleteListener(Login.this, new OnCompleteListener<AuthResult>() {
