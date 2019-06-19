@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".login.Cadastro"></activity>
+        <activity android:name=".login.ResetPassword"></activity>
+        <activity android:name=".login.Cadastro" />
         <activity android:name=".MainActivity" />
         <activity android:name=".DetailRobot" />
         <activity android:name=".UpdateRobot" />
