@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Robôs</string>
-    <string name="app_name">Robôs</string>
     <string name="checkbox">com.example.controle_robo.login.checkbox</string>
     <string name="email">com.example.controle_robo.login.email</string>
     <string name="password">com.example.controle_robo.login.password</string>
