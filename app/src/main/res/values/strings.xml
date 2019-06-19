@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">Robôs</string>
+    <string name="checkbox">com.example.controle_robo.login.checkbox</string>
+    <string name="email">com.example.controle_robo.login.email</string>
+    <string name="password">com.example.controle_robo.login.password</string>
     <string-array name="category_array">
         <item>Categoria</item>
         <item>Seguidor de linha Pro</item>
@@ -34,5 +37,6 @@
         <item>Localização</item>
         <item>Jaraguá do Sul</item>
         <item>Joinville</item>
+
     </string-array>
 </resources>

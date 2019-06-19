@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -21,7 +22,9 @@ import com.example.controle_robo.obj.Robo;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends AppCompatActivity {
@@ -35,9 +38,11 @@ public class MainActivity extends AppCompatActivity {
     private List<Responsavel> responsibleList;
     private List<Localizacao> localizationList;
     public static List<Relacionamento> relationList;
+    private EditText search;
     private ListView robotListView;
     private Button btUpdate;
     private Button btUpdateList;
+    private Button btSearchList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
         robotListView = findViewById(R.id.listRobos);
         btUpdate = findViewById(R.id.btUpdate);
         btUpdateList = findViewById(R.id.btUpdateList);
+        search = findViewById(R.id.searchText);
+        btSearchList = findViewById(R.id.btSearch);
         robotList = new ArrayList<>();
         categoryList = new ArrayList<>();
         responsibleList = new ArrayList<>();
@@ -54,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
         btAtualizarLista();
         btAtualizar();
+        btProcurar();
         robotListViewOnItemClickListener();
 
     }
@@ -86,9 +94,45 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private void btProcurar() {
+        btSearchList.setOnClickListener(new View.OnClickListener() {
+            List<Relacionamento> tempRelList = new ArrayList<>();
+            public void onClick(View v) {
+                String aux = search.getText().toString();
+                int tol=0;
+                tempRelList.clear();
+
+                Map<Integer,String> statusMap;
+                MapaStatusRobo map = new MapaStatusRobo();
+                statusMap = new HashMap<>();
+                statusMap = map.loadStatus();
+
+                for(int i=0;i<relationList.size();i++){
+                    if (aux.compareTo(relationList.get(i).getRobName())==tol||
+                            aux.compareTo(relationList.get(i).getRobCategory())>=-5&&
+                            aux.compareTo(relationList.get(i).getRobCategory())<=0||
+                            aux.compareTo(relationList.get(i).getResName())==tol
+                    ){
+                        Relacionamento r = new Relacionamento();
+                        r=relationList.get(i);
+                        tempRelList.add(r);
+                    }
+                }
+                showListViewSearch(tempRelList);
+            }
+        });
+    }
+
     private void showListView() {
         RoboViewAdapter roboListAdapter = new RoboViewAdapter(MainActivity.this,
                 R.layout.list_robots, relationList);
+        roboListAdapter.clear();
+        robotListView.setAdapter(roboListAdapter);
+    }
+
+    private void showListViewSearch(List tempRelList) {
+        RoboViewAdapter roboListAdapter = new RoboViewAdapter(MainActivity.this,
+                R.layout.list_robots, tempRelList);
         roboListAdapter.clear();
         robotListView.setAdapter(roboListAdapter);
     }
