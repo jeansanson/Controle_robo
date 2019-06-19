@@ -62,16 +62,15 @@ public class MainActivity extends AppCompatActivity {
         btAtualizarLista();
         btAtualizar();
         btProcurar();
-        robotListViewOnItemClickListener();
 
     }
 
-    private void robotListViewOnItemClickListener() {
+    private void robotListViewOnItemClickListener(final List<Relacionamento> l) {
         robotListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(MainActivity.this, DetailRobot.class);
-                intent.putExtra(REL, relationList.get(position));
+                intent.putExtra(REL, l.get(position));
                 //intent.putExtra(RELLIST, (Serializable) relationList);
                 startActivity(intent);
             }
@@ -89,7 +88,8 @@ public class MainActivity extends AppCompatActivity {
     private void btAtualizarLista() {
         btUpdateList.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                showListView();
+                robotListViewOnItemClickListener(relationList);
+                showListView(relationList);
             }
         });
     }
@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
             List<Relacionamento> tempRelList = new ArrayList<>();
             public void onClick(View v) {
                 String aux = search.getText().toString();
-                int tol=0;
+                int tol = -4;
                 tempRelList.clear();
 
                 Map<Integer,String> statusMap;
@@ -107,32 +107,25 @@ public class MainActivity extends AppCompatActivity {
                 statusMap = new HashMap<>();
                 statusMap = map.loadStatus();
 
-                for(int i=0;i<relationList.size();i++){
-                    if (aux.compareTo(relationList.get(i).getRobName())==tol||
-                            aux.compareTo(relationList.get(i).getRobCategory())>=-5&&
-                            aux.compareTo(relationList.get(i).getRobCategory())<=0||
-                            aux.compareTo(relationList.get(i).getResName())==tol
-                    ){
-                        Relacionamento r = new Relacionamento();
-                        r=relationList.get(i);
-                        tempRelList.add(r);
+                if (aux != null) {
+                    for (int i = 0; i < relationList.size(); i++) {
+                        if ((aux.compareToIgnoreCase(relationList.get(i).getRobName()) == 0) || (aux.compareToIgnoreCase(relationList.get(i).getRobCategory()) == 0) || (aux.compareToIgnoreCase(relationList.get(i).getResName()) == 0) || (aux.compareToIgnoreCase(relationList.get(i).getLocCity()) == 0)
+                        ) {
+                            Relacionamento r = new Relacionamento();
+                            r = relationList.get(i);
+                            tempRelList.add(r);
+                        }
                     }
+                    robotListViewOnItemClickListener(tempRelList);
+                    showListView(tempRelList);
                 }
-                showListViewSearch(tempRelList);
             }
         });
     }
 
-    private void showListView() {
+    private void showListView(final List<Relacionamento> l) {
         RoboViewAdapter roboListAdapter = new RoboViewAdapter(MainActivity.this,
-                R.layout.list_robots, relationList);
-        roboListAdapter.clear();
-        robotListView.setAdapter(roboListAdapter);
-    }
-
-    private void showListViewSearch(List tempRelList) {
-        RoboViewAdapter roboListAdapter = new RoboViewAdapter(MainActivity.this,
-                R.layout.list_robots, tempRelList);
+                R.layout.list_robots, l);
         roboListAdapter.clear();
         robotListView.setAdapter(roboListAdapter);
     }
@@ -155,7 +148,8 @@ public class MainActivity extends AppCompatActivity {
             JSONreader jsonReader = new JSONreader();
             String json = s;
             jsonReader.jsonToLists(json, robotList, categoryList, responsibleList, localizationList, relationList);
-            showListView();
+            robotListViewOnItemClickListener(relationList);
+            showListView(relationList);
         }
 
         @Override
