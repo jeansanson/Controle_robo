@@ -1,13 +1,38 @@
 <resources>
     <string name="app_name">Robôs</string>
-    <string-array name="planets_array">
-        <item>Mercury</item>
-        <item>Venus</item>
-        <item>Earth</item>
-        <item>Mars</item>
-        <item>Jupiter</item>
-        <item>Saturn</item>
-        <item>Uranus</item>
-        <item>Neptune</item>
+    <string-array name="category_array">
+        <item>Categoria</item>
+        <item>Seguidor de linha Pro</item>
+        <item>Seguidor de Linha Junior</item>
+        <item>Sumo 500g</item>
+        <item>Sumo 3kg</item>
+        <item>Trekking</item>
+        <item>Antweight</item>
+        <item>Bettleweight</item>
+        <item>Hobbyweight</item>
+        <item>Fetterweight</item>
+    </string-array>
+    <string-array name="status_array">
+        <item>Status</item>
+        <item>Indefinido</item>
+        <item>Descartado</item>
+        <item>Pronto</item>
+        <item>Revisão pendente</item>
+        <item>Necessita reparos</item>
+        <item>Em produção</item>
+        <item>Em manutenção</item>
+    </string-array>
+    <string-array name="responsible_array">
+        <item>Responsavel</item>
+        <item>Weiven</item>
+        <item>Ariel</item>
+        <item>Rodrigo</item>
+        <item>Esdras</item>
+        <item>Manfred</item>
+    </string-array>
+    <string-array name="localization_array">
+        <item>Localização</item>
+        <item>Jaraguá do Sul</item>
+        <item>Joinville</item>
     </string-array>
 </resources>

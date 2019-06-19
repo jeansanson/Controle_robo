@@ -11,13 +11,14 @@ import android.widget.TextView;
 
 import com.example.controle_robo.obj.Relacionamento;
 
+import java.io.Serializable;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-
-import static com.example.controle_robo.MainActivity.REL;
 
 
 public class DetailRobot extends AppCompatActivity {
+
 
     private TextView robotId;
     private TextView robotName;
@@ -29,6 +30,9 @@ public class DetailRobot extends AppCompatActivity {
     private Button btUpdateInfo;
     private Map<Integer,String> statusMap;
     private static final String TAG = "Detail Robot";
+    private static final String REL = "relacionamento";
+    private static final String RELLIST = "relacionamentoLista";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +55,8 @@ public class DetailRobot extends AppCompatActivity {
         btUpdateInfo = findViewById(R.id.btUpdateInfo);
         Intent intent = getIntent();
 
-        Relacionamento r = (Relacionamento) intent.getSerializableExtra("relacionamento");
+        Relacionamento r = (Relacionamento) intent.getSerializableExtra(REL);
+        List<Relacionamento> rl = (List) intent.getSerializableExtra(RELLIST);
 
         robotId.setText(String.valueOf(r.getId()));
         robotName.setText(r.getRobName());
@@ -61,15 +66,16 @@ public class DetailRobot extends AppCompatActivity {
         robotLocalization.setText("Local: "+r.getLocCity());
         robotDescription.setText(r.getDescription());
 
-        updateRobotInfo(r);
+        updateRobotInfo(r,rl);
     }
 
-    private void updateRobotInfo(final Relacionamento r) {
+    private void updateRobotInfo(final Relacionamento r, final List rl) {
         btUpdateInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(DetailRobot.this, UpdateRobot.class);
                 intent.putExtra(REL, r);
+                //intent.putExtra(RELLIST, (Serializable) rl);
                 startActivity(intent);
                 finish();
             }

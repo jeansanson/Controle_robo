@@ -8,13 +8,13 @@ public class MapaStatusRobo {
     private Map<Integer,String> status = new HashMap<Integer, String>();
 
     public Map loadStatus(){
-        status.put(-1,"indefinido");
-        status.put(0,"descartado");
-        status.put(1,"pronto");
-        status.put(2,"revisão pendente");
-        status.put(3,"necessita reparos");
-        status.put(4,"em produção");
-        status.put(5,"em manutenção");
+        status.put(-1,"Indefinido");
+        status.put(0,"Descartado");
+        status.put(1,"Pronto");
+        status.put(2,"Revisão pendente");
+        status.put(3,"Necessita reparos");
+        status.put(4,"Em produção");
+        status.put(5,"Em manutenção");
 
         return status;
     }

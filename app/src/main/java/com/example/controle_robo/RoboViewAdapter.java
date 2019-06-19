@@ -11,7 +11,9 @@ import android.widget.TextView;
 import com.example.controle_robo.obj.Relacionamento;
 import com.example.controle_robo.obj.Robo;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class RoboViewAdapter extends ArrayAdapter {
 
@@ -19,6 +21,7 @@ public class RoboViewAdapter extends ArrayAdapter {
     private int layoutResource;
     private LayoutInflater layoutInflater;
     private List<Relacionamento> roboList;
+    private Map<Integer,String> statusMap;
 
     public RoboViewAdapter(Context context, int resource, List<Relacionamento> roboList) {
         super(context, resource);
@@ -49,9 +52,15 @@ public class RoboViewAdapter extends ArrayAdapter {
 
         Relacionamento roboAtual = roboList.get(position);
 
+        MapaStatusRobo map = new MapaStatusRobo();
+        statusMap = new HashMap<>();
+        statusMap = map.loadStatus();
+
         viewHolder.tvRoboName.setText(roboAtual.getRobName());
         viewHolder.tvRoboId.setText(String.valueOf(roboAtual.getId()));
         viewHolder.tvRoboCategory.setText(roboAtual.getRobCategory());
+        viewHolder.tvRoboStatus.setText(statusMap.get(roboAtual.getStatus()));
+        viewHolder.tvRoboResponsible.setText(roboAtual.getResName());
 
         return convertView;
     }
@@ -60,11 +69,15 @@ public class RoboViewAdapter extends ArrayAdapter {
         final TextView tvRoboName;
         final TextView tvRoboId;
         final TextView tvRoboCategory;
+        final TextView tvRoboStatus;
+        final TextView tvRoboResponsible;
 
         ViewHolder(View v) {
             this.tvRoboName = v.findViewById(R.id.robotName);
             this.tvRoboId = v.findViewById(R.id.robotId);
             this.tvRoboCategory = v.findViewById(R.id.robotCategory);
+            this.tvRoboStatus = v.findViewById(R.id.robotStatus);
+            this.tvRoboResponsible = v.findViewById(R.id.robotResponsible);
         }
     }
 }

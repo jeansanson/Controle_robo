@@ -6,6 +6,17 @@
     android:layout_height="74dp">
 
     <TextView
+        android:id="@+id/robotResponsible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="TextView"
+        android:textAlignment="viewStart"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/robotCategory"
+        app:layout_constraintTop_toTopOf="@+id/robotCategory" />
+
+    <TextView
         android:id="@+id/robotName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -19,6 +30,17 @@
 
     <TextView
         android:id="@+id/robotCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="TextView"
+        android:textAlignment="viewStart"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/robotStatus"
+        app:layout_constraintTop_toTopOf="@+id/robotStatus" />
+
+    <TextView
+        android:id="@+id/robotStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
