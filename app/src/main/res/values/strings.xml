@@ -5,7 +5,7 @@
     <string name="password">com.example.controle_robo.login.password</string>
     <string-array name="category_array">
         <item>Categoria</item>
-        <item>Seguidor de linha Pro</item>
+        <item>Seguidor de Linha Pro</item>
         <item>Seguidor de Linha Junior</item>
         <item>Sumo 500g</item>
         <item>Sumo 3kg</item>

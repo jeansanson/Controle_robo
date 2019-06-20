@@ -1,6 +1,7 @@
 package com.example.controle_robo;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.controle_robo.obj.Categoria;
 import com.example.controle_robo.obj.Relacionamento;
@@ -89,10 +90,10 @@ public class JSONreader {
     public String downloadJson(String urlString){
         String TAG = "DownloadJSON";
         StringBuilder jsonString = new StringBuilder();
-
         try {
             URL url = new URL(urlString);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+
             int resposta  = connection.getResponseCode();
             Log.e(TAG, "DownloadJSON: Código de resposta: "+resposta );
 

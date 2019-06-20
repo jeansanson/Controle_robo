@@ -99,7 +99,6 @@ public class MainActivity extends AppCompatActivity {
             List<Relacionamento> tempRelList = new ArrayList<>();
             public void onClick(View v) {
                 String aux = search.getText().toString();
-                int tol = -4;
                 tempRelList.clear();
 
                 Map<Integer,String> statusMap;
@@ -108,12 +107,78 @@ public class MainActivity extends AppCompatActivity {
                 statusMap = map.loadStatus();
 
                 if (aux != null) {
-                    for (int i = 0; i < relationList.size(); i++) {
-                        if ((aux.compareToIgnoreCase(relationList.get(i).getRobName()) == 0) || (aux.compareToIgnoreCase(relationList.get(i).getRobCategory()) == 0) || (aux.compareToIgnoreCase(relationList.get(i).getResName()) == 0) || (aux.compareToIgnoreCase(relationList.get(i).getLocCity()) == 0)
-                        ) {
-                            Relacionamento r = new Relacionamento();
-                            r = relationList.get(i);
-                            tempRelList.add(r);
+
+                    aux = aux.trim();
+
+                    if (aux.compareToIgnoreCase("bettle") == 0) {
+                        aux = "Bettleweight";
+                    }
+                    if (aux.compareToIgnoreCase("hobby") == 0) {
+                        aux = "Hobbyweight";
+                    }
+                    if (aux.compareToIgnoreCase("fetter") == 0) {
+                        aux = "Fetterweight";
+                    }
+                    if (aux.compareToIgnoreCase("ant") == 0) {
+                        aux = "Antweight";
+                    }
+
+                    if (aux.compareToIgnoreCase(("sumo")) == 0) {
+                        for (int i = 0; i < relationList.size(); i++) {
+                            if (("Sumo 500g".compareToIgnoreCase(relationList.get(i).getRobCategory()) == 0) || ("Sumo 3kg".compareToIgnoreCase(relationList.get(i).getRobCategory()) == 0)) {
+                                Relacionamento r = new Relacionamento();
+                                r = relationList.get(i);
+                                tempRelList.add(r);
+                            }
+                        }
+                    }
+
+                    if (aux.compareToIgnoreCase("seguidor") == 0) {
+                        for (int i = 0; i < relationList.size(); i++) {
+                            if (("Seguidor de linha Pro".compareToIgnoreCase(relationList.get(i).getRobCategory()) == 0) || ("Seguidor de Linha Junior".compareToIgnoreCase(relationList.get(i).getRobCategory()) == 0)) {
+                                Relacionamento r = new Relacionamento();
+                                r = relationList.get(i);
+                                tempRelList.add(r);
+                            }
+                        }
+                    }
+
+                    if (aux.compareToIgnoreCase("seguidor pro") == 0) {
+                        for (int i = 0; i < relationList.size(); i++) {
+                            if ("Seguidor de Linha Pro".compareToIgnoreCase(relationList.get(i).getRobCategory()) == 0) {
+                                Relacionamento r = new Relacionamento();
+                                r = relationList.get(i);
+                                tempRelList.add(r);
+                            }
+                        }
+                    }
+
+                    if (aux.compareToIgnoreCase("seguidor junior") == 0 || aux.compareToIgnoreCase("seguidor jr") == 0) {
+                        for (int i = 0; i < relationList.size(); i++) {
+                            if ("Seguidor de Linha Junior".compareToIgnoreCase(relationList.get(i).getRobCategory()) == 0) {
+                                Relacionamento r = new Relacionamento();
+                                r = relationList.get(i);
+                                tempRelList.add(r);
+                            }
+                        }
+                    }
+
+                    if (aux.compareToIgnoreCase("batalha") == 0) {
+                        for (int i = 0; i < relationList.size(); i++) {
+                            if (("Antweight".compareToIgnoreCase(relationList.get(i).getRobCategory()) == 0) || ("Bettleweight".compareToIgnoreCase(relationList.get(i).getRobCategory()) == 0) || ("Hobbyweight".compareToIgnoreCase(relationList.get(i).getRobCategory()) == 0) || ("Fetterweight".compareToIgnoreCase(relationList.get(i).getRobCategory()) == 0)) {
+                                Relacionamento r = new Relacionamento();
+                                r = relationList.get(i);
+                                tempRelList.add(r);
+                            }
+                        }
+                    } else {
+                        for (int i = 0; i < relationList.size(); i++) {
+                            if ((aux.compareToIgnoreCase(relationList.get(i).getRobName()) == 0) || (aux.compareToIgnoreCase(relationList.get(i).getRobCategory()) == 0) || (aux.compareToIgnoreCase(relationList.get(i).getResName()) == 0) || (aux.compareToIgnoreCase(relationList.get(i).getLocCity()) == 0)
+                            ) {
+                                Relacionamento r = new Relacionamento();
+                                r = relationList.get(i);
+                                tempRelList.add(r);
+                            }
                         }
                     }
                     robotListViewOnItemClickListener(tempRelList);
@@ -160,7 +225,6 @@ public class MainActivity extends AppCompatActivity {
             if (json == null) {
                 Log.e(TAG, "doInBackground: Erro baixando JSON");
             }
-
             return json;
         }
     }

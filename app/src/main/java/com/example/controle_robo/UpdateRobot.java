@@ -111,8 +111,8 @@ public class UpdateRobot extends AppCompatActivity {
         int id=r.getId();
         for(int i=0;i<relationList.size();i++){
             if(id==relationList.get(i).getId()){
-                relationList.get(i).setRobName(robotName.getText().toString());
-                relationList.get(i).setDescription(robotDescription.getText().toString());
+                relationList.get(i).setRobName(robotName.getText().toString().trim());
+                relationList.get(i).setDescription(robotDescription.getText().toString().trim());
             }
         }
     }
