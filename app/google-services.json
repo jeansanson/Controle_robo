@@ -15,11 +15,27 @@
       },
       "oauth_client": [
         {
-          "client_id": "550260509686-e9667h2dp24ionof7ft0ljnaprf9370v.apps.googleusercontent.com",
+          "client_id": "550260509686-9o1hp6gmgfjukc47g2l4rnr4iem231sr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.controle_robo",
+            "certificate_hash": "43b73762fcb5f456a0522734c8caf26d9c9b5f2d"
+          }
+        },
+        {
+          "client_id": "550260509686-ajrfb4b7l3fq0otnkvihbbh45via8cu7.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.controle_robo",
             "certificate_hash": "37cbf11ad031ec669768854de1bb487fefbd079e"
+          }
+        },
+        {
+          "client_id": "550260509686-o7pg58ocl0i678l141m82l3d8pg2p83m.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.controle_robo",
+            "certificate_hash": "474d3400bc3e3933b29cdbe104b95cd53ed67441"
           }
         },
         {
@@ -36,7 +52,7 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "550260509686-h5bjafsadqtcf4iek740rbaddvi0p9on.apps.googleusercontent.com",
+              "client_id": "550260509686-n242b50pf60clenaqe8afrk6eb6ojp1a.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

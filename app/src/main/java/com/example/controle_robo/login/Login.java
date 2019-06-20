@@ -16,7 +16,9 @@ import android.widget.Toast;
 
 import com.example.controle_robo.MainActivity;
 import com.example.controle_robo.R;
+import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -30,6 +32,7 @@ public class Login extends AppCompatActivity {
     private ImageView imvLogo;
     private TextView tvResetSenha;
     private CheckBox cbLembrarSenha;
+    private SignInButton btnSignIn;
 
     private FirebaseAuth firebaseAuth;
 
@@ -49,6 +52,7 @@ public class Login extends AppCompatActivity {
         imvLogo = findViewById(R.id.imvLogo);
         tvResetSenha = findViewById(R.id.tvResetSenha);
         cbLembrarSenha = findViewById(R.id.cbLembrarSenha);
+        btnSignIn = findViewById(R.id.btnSignIn);
 
         //Logo do grupo de robotica
         imvLogo.setImageResource(R.drawable.logo);
@@ -75,30 +79,41 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if (cbLembrarSenha.isChecked()){ //Se a checkbox esta clicada
-                    prefEditor.putString(getString(R.string.checkbox),"True"); //Vai abrir o app com a checkbox clicada
-                    prefEditor.commit();
-
-                    String email = barraEmail.getText().toString().trim();
-                    prefEditor.putString(getString(R.string.email), email);    //com o ultimo login e senha salvo
-                    prefEditor.commit();
-
-                    String senha = barraSenha.getText().toString().trim();
-                    prefEditor.putString(getString(R.string.password), senha);
-                    prefEditor.commit();
-
-                    login(email, senha);
+                if (barraEmail.length() == 0 || barraSenha.length() == 0){
+                    Toast.makeText(Login.this, "Campos solicitados vazios", Toast.LENGTH_SHORT).show();
                 }
-                else{  //Se a checkbox não esta clicada apenas faz o login e nao salva nada
-                    String email1 = barraEmail.getText().toString().trim();
-                    String senha1 = barraSenha.getText().toString().trim();
-                    login(email1, senha1);
-                }
+
+                else{
+                    if (cbLembrarSenha.isChecked()) { //Se a checkbox esta clicada
+                        prefEditor.putString(getString(R.string.checkbox), "True"); //Vai abrir o app com a checkbox clicada
+                        prefEditor.commit();
+
+                        String email = barraEmail.getText().toString().trim();
+                        prefEditor.putString(getString(R.string.email), email);    //com o ultimo login e senha salvo
+                        prefEditor.commit();
+
+                        String senha = barraSenha.getText().toString().trim();
+                        prefEditor.putString(getString(R.string.password), senha);
+                        prefEditor.commit();
+
+                            login(email, senha);
+
+
+                    } else {  //Se a checkbox não esta clicada apenas faz o login e nao salva nada
+
+                            String email1 = barraEmail.getText().toString().trim();
+                            String senha1 = barraSenha.getText().toString().trim();
+                            login(email1, senha1);
+
+
+                    }}
 
                /* String email = barraEmail.getText().toString().trim();
                 String senha = barraSenha.getText().toString().trim();
                 login(email, senha);*/
-            }
+
+                }
+
         });
 
         //Text Reset Senha
@@ -144,20 +159,36 @@ public class Login extends AppCompatActivity {
         firebaseAuth.signInWithEmailAndPassword(email, senha).addOnCompleteListener(Login.this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){  //Se o login é valido
-                    Intent intent = new Intent(Login.this, MainActivity.class);
-                    startActivity(intent);
+
+                    if (task.isSuccessful()) {  //Se o login é valido
+                        Intent intent = new Intent(Login.this, MainActivity.class);
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(Login.this, "Login Invalido", Toast.LENGTH_SHORT).show();
+                    }
+
                 }
-                else{
-                    Toast.makeText(Login.this, "Login Invalido", Toast.LENGTH_SHORT).show();
-                }
+
+
+
+
+        })
+        .addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                if (barraEmail == null || barraSenha == null)
+                Toast.makeText(Login.this, "Digite algo na barra", Toast.LENGTH_SHORT).show();
+
             }
         });
+
     }
 
     @Override
     protected void onStart() {
         super.onStart();
         firebaseAuth = Conexao.getFirebaseAuth();
+
+
     }
 }
