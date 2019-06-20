@@ -122,6 +122,9 @@ public class MainActivity extends AppCompatActivity {
                     if (aux.compareToIgnoreCase("ant") == 0) {
                         aux = "Antweight";
                     }
+                    if (aux.compareToIgnoreCase("jaraguá") == 0 || aux.compareToIgnoreCase("jaragua") == 0) {
+                        aux = "Jaraguá do Sul";
+                    }
 
                     if (aux.compareToIgnoreCase(("sumo")) == 0) {
                         for (int i = 0; i < relationList.size(); i++) {
