@@ -27,8 +27,6 @@ public class ResetPassword extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reset_password);
 
-        Toast.makeText(this, "Não deixe o campo vazio", Toast.LENGTH_SHORT).show();
-
         btnResetPassword = findViewById(R.id.btnResetPassword);
         etEmail = findViewById(R.id.etEmail);
         imvLogo1 = findViewById(R.id.imvLogo1);
@@ -40,8 +38,14 @@ public class ResetPassword extends AppCompatActivity {
         btnResetPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email = etEmail.getText().toString().trim();
-                resetPassword(email);
+                if (etEmail.length() == 0){
+                    Toast.makeText(ResetPassword.this, "Campo solicitado esta vazio", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    String email = etEmail.getText().toString().trim();
+                    resetPassword(email);
+                }
+
             }
         });
     }

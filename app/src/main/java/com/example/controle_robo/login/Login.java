@@ -61,10 +61,7 @@ public class Login extends AppCompatActivity {
         pref = PreferenceManager.getDefaultSharedPreferences(this);
         prefEditor = pref.edit();
 
-
         checkSharedPreferences();
-
-
 
         //chamando o botão para o cadastro de um novo email
         btnNovo.setOnClickListener(new View.OnClickListener() {
@@ -79,7 +76,7 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if (barraEmail.length() == 0 || barraSenha.length() == 0){
+                if (barraEmail.length() == 0 || barraSenha.length() == 0){  //Se algum campo estiver vazio aparece a mensagem
                     Toast.makeText(Login.this, "Campos solicitados vazios", Toast.LENGTH_SHORT).show();
                 }
 
@@ -188,7 +185,5 @@ public class Login extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         firebaseAuth = Conexao.getFirebaseAuth();
-
-
     }
 }

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.controle_robo.MainActivity;
@@ -24,6 +25,7 @@ public class Cadastro extends AppCompatActivity {
     private Button btnRegistrar;
     private Button btnVoltar;
     private FirebaseAuth firebaseAuth;
+    private ImageView imvLogo4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +36,9 @@ public class Cadastro extends AppCompatActivity {
         barraSenha = findViewById(R.id.barraSenha);
         btnVoltar = findViewById(R.id.btnVoltar);
         btnRegistrar = findViewById(R.id.btnRegistrar);
+        imvLogo4 = findViewById(R.id.imvLogo4);
+
+        imvLogo4.setImageResource(R.drawable.logo);
 
         btnVoltar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,9 +49,16 @@ public class Cadastro extends AppCompatActivity {
         btnRegistrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email = barraEmail.getText().toString().trim(); //.trim()
-                String senha = barraSenha.getText().toString().trim(); //.trim()
-                CriarUsuario(email, senha);
+
+                if (barraEmail.length() == 0 || barraSenha.length() == 0){
+                    Toast.makeText(Cadastro.this, "Campos solicitados estão vazios", Toast.LENGTH_SHORT).show();
+                }else{
+                    String email = barraEmail.getText().toString().trim(); //.trim()
+                    String senha = barraSenha.getText().toString().trim(); //.trim()
+                    CriarUsuario(email, senha);
+                }
+
+
             }
         });
 
