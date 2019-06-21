@@ -1,9 +1,11 @@
 package com.example.controle_robo;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -11,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListAdapter;
 import android.widget.Spinner;
 
 import com.example.controle_robo.obj.Relacionamento;
@@ -31,6 +34,7 @@ public class UpdateRobot extends AppCompatActivity {
     private Spinner responsibleSpinner;
     private Spinner localizationSpinner;
     private Button btSaveInfo;
+    private Button btCategory;
 
     private Map<Integer,String> statusMap;
 
@@ -56,6 +60,7 @@ public class UpdateRobot extends AppCompatActivity {
         responsibleSpinner = findViewById(R.id.responsibleSpinner);
         localizationSpinner = findViewById(R.id.localizationSpinner);
         btSaveInfo = findViewById(R.id.btSaveInfo);
+        btCategory = findViewById(R.id.btCategory);
 
         Intent intent = getIntent();
         Relacionamento r = (Relacionamento) intent.getSerializableExtra(REL);
@@ -66,7 +71,10 @@ public class UpdateRobot extends AppCompatActivity {
 
         spinnerArrayAdapters();
         SaveRobotInfo(r);
+        btCategoryClick(r);
+
     }
+
 
     private void SaveRobotInfo(final Relacionamento r) {
         btSaveInfo.setOnClickListener(new View.OnClickListener() {
@@ -75,6 +83,30 @@ public class UpdateRobot extends AppCompatActivity {
                 saveInfo(r);
                 Log.d(TAG, "onClick: robo salvo");
                 finish();
+            }
+        });
+    }
+
+    private void btCategoryClick(final Relacionamento r) {
+        btCategory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ArrayAdapter<CharSequence> categoryAdapter = ArrayAdapter.createFromResource(UpdateRobot.this,
+                        R.array.category_array, android.R.layout.simple_spinner_item);
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(UpdateRobot.this);
+                builder.setMessage("Categorias");
+
+
+                builder.setItems(R.array.category_array, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
             }
         });
     }

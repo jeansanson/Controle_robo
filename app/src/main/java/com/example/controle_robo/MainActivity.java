@@ -1,10 +1,12 @@
 package com.example.controle_robo;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -43,26 +45,31 @@ public class MainActivity extends AppCompatActivity {
     private Button btUpdate;
     private Button btUpdateList;
     private Button btSearchList;
+    private Button btLogOut;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         robotListView = findViewById(R.id.listRobos);
         btUpdate = findViewById(R.id.btUpdate);
         btUpdateList = findViewById(R.id.btUpdateList);
         search = findViewById(R.id.searchText);
         btSearchList = findViewById(R.id.btSearch);
+        btLogOut = findViewById(R.id.btLogOut);
+
         robotList = new ArrayList<>();
         categoryList = new ArrayList<>();
         responsibleList = new ArrayList<>();
         localizationList = new ArrayList<>();
+
         relationList = new ArrayList<>();
 
         btAtualizarLista();
         btAtualizar();
         btProcurar();
-
+        btSair();
     }
 
     private void robotListViewOnItemClickListener(final List<Relacionamento> l) {
@@ -81,6 +88,37 @@ public class MainActivity extends AppCompatActivity {
         btUpdate.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 download();
+            }
+        });
+    }
+
+    private void btSair() {
+        btLogOut.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setMessage("Tem certeza que deseja sair?")
+                        .setTitle("Confirmar saída");
+
+                builder.setCancelable(false);
+                builder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+
+                builder.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                });
+
+                builder.setCancelable(false);
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+
             }
         });
     }

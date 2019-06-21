@@ -19,6 +19,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 
+
 public class JSONreader {
 
     public void jsonToLists (String jsonString, List robotList, List categoryList, List responsibleList, List localizationList, List relationList) {
