@@ -1,5 +1,6 @@
 package com.example.controle_robo.login;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
@@ -29,6 +30,7 @@ public class Login extends AppCompatActivity {
     private EditText barraSenha;
     private Button btnLogin;
     private Button btnNovo;
+    private Button btnApagar;
     private ImageView imvLogo;
     private TextView tvResetSenha;
     private CheckBox cbLembrarSenha;
@@ -53,6 +55,7 @@ public class Login extends AppCompatActivity {
         tvResetSenha = findViewById(R.id.tvResetSenha);
         cbLembrarSenha = findViewById(R.id.cbLembrarSenha);
         btnSignIn = findViewById(R.id.btnSignIn);
+        btnApagar = findViewById(R.id.btnApagar);
 
         //Logo do grupo de robotica
         imvLogo.setImageResource(R.drawable.logo);
@@ -93,7 +96,7 @@ public class Login extends AppCompatActivity {
                         prefEditor.putString(getString(R.string.password), senha);
                         prefEditor.commit();
 
-                            login(email, senha);
+                        login(email, senha);
 
 
                     } else {  //Se a checkbox não esta clicada apenas faz o login e nao salva nada
@@ -111,6 +114,27 @@ public class Login extends AppCompatActivity {
 
                 }
 
+        });
+
+        btnApagar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                SharedPreferences config =  PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+                SharedPreferences.Editor editor = config.edit();
+                editor.clear();   //Retira os dados guardados no SharedPreferences
+                editor.commit();  //Salva as configurações
+                Toast.makeText(Login.this, "Dados salvos foram apagados", Toast.LENGTH_SHORT).show();
+
+                barraEmail.setText("");
+                barraSenha.setText("");
+
+                if (cbLembrarSenha.isChecked()){
+                    cbLembrarSenha.setChecked(false);
+                }
+
+
+            }
         });
 
         //Text Reset Senha

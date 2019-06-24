@@ -33,6 +33,7 @@
         app:layout_constraintTop_toBottomOf="@+id/barraEmail" />
 
     <Button
+
         android:id="@+id/btnLogin"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
@@ -42,9 +43,12 @@
         android:text="Login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cbLembrarSenha" />
+        app:layout_constraintTop_toBottomOf="@+id/cbLembrarSenha"
+        android:backgroundTint="#AB1E2f"
+        android:textColor="#FFFFFF"/>
 
     <Button
+
         android:id="@+id/btnNovo"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
@@ -54,7 +58,9 @@
         android:text="Criar Conta"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
+        app:layout_constraintTop_toBottomOf="@+id/btnLogin"
+        android:backgroundTint="#AB1E2f"
+        android:textColor="#FFFFFF"/>
 
     <ImageView
         android:id="@+id/imvLogo"
@@ -97,6 +103,7 @@
         app:layout_constraintTop_toBottomOf="@+id/barraEmail" />
 
     <CheckBox
+        app:buttonTint="#AB1E2f"
         android:id="@+id/cbLembrarSenha"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -127,5 +134,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnNovo"></com.google.android.gms.common.SignInButton>
+
+    <Button
+        android:id="@+id/btnApagar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="Apagar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnSignIn" />
 
 </android.support.constraint.ConstraintLayout>

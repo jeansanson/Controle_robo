@@ -17,6 +17,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class ResetPassword extends AppCompatActivity {
 
     private Button btnResetPassword;
+    private Button btnVoltar;
     private EditText etEmail;
     private ImageView imvLogo1;
 
@@ -27,12 +28,21 @@ public class ResetPassword extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reset_password);
 
+        btnVoltar = findViewById(R.id.btnVoltar);
         btnResetPassword = findViewById(R.id.btnResetPassword);
         etEmail = findViewById(R.id.etEmail);
         imvLogo1 = findViewById(R.id.imvLogo1);
 
         imvLogo1.setImageResource(R.drawable.logo);
 
+
+
+        btnVoltar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
 
         btnResetPassword.setOnClickListener(new View.OnClickListener() {
