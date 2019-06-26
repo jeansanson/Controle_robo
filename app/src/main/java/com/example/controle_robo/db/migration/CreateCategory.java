@@ -8,8 +8,7 @@ public class CreateCategory implements Database.DatabaseMigration{
     @Override
     public String up() {
         return "CREATE TABLE " + CategoryTable.TABLE_NAME + "( "
-                + CategoryTable.PRIMARY_KEY + " integer primary key autoincrement, "
-                + CategoryTable.COLUMN_NAME + " string, "+
+                + CategoryTable.PRIMARY_KEY + " integer primary key autoincrement, "+
                 ")";
     }
 

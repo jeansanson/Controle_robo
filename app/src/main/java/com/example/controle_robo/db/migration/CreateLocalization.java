@@ -8,8 +8,7 @@ public class CreateLocalization implements Database.DatabaseMigration{
         @Override
         public String up() {
             return "CREATE TABLE " + LocalizationTable.TABLE_NAME + "( "
-                    + LocalizationTable.PRIMARY_KEY + " integer primary key autoincrement, "
-                    + LocalizationTable.COLUMN_NAME + " string, "+
+                    + LocalizationTable.PRIMARY_KEY + " integer primary key autoincrement, "+
                     ")";
         }
 
