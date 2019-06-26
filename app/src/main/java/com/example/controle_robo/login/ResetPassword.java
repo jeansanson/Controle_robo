@@ -35,8 +35,6 @@ public class ResetPassword extends AppCompatActivity {
 
         imvLogo1.setImageResource(R.drawable.logo);
 
-
-
         btnVoltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
