@@ -4,7 +4,7 @@ import com.example.controle_robo.db.Database;
 import com.example.controle_robo.db.tables.CategoryTable;
 import com.example.controle_robo.db.tables.LocalizationTable;
 
-public class CreateLocalization implements Database.DatabaseMigration{
+public class CreateLocalization {/*
         @Override
         public String up() {
             return "CREATE TABLE " + LocalizationTable.TABLE_NAME + "( "
@@ -15,5 +15,5 @@ public class CreateLocalization implements Database.DatabaseMigration{
         @Override
         public String down() {
             return "DROP TABLE IF EXISTS " + LocalizationTable.TABLE_NAME;
-        }
+        }*/
 }

@@ -12,7 +12,7 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class DAL {
+public abstract class DAL {/*
     private static final String TAG = "DAL";
     protected SQLiteDatabase db;
     protected Database schema;
@@ -144,4 +144,4 @@ public abstract class DAL {
         return cursor;
     }
 
-}
+*/}
