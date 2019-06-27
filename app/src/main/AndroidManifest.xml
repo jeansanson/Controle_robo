@@ -12,17 +12,20 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".login.ResetPassword"></activity>
-        <activity android:name=".login.Cadastro" />
-        <activity android:name=".MainActivity" />
-        <activity android:name=".DetailRobot" />
-        <activity android:name=".UpdateRobot" />
-        <activity android:name=".login.Login">
+        <activity android:name=".SplashScreen.SplashScreen" android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".login.ResetPassword" />
+        <activity android:name=".login.Cadastro" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".DetailRobot" />
+        <activity android:name=".UpdateRobot" />
+        <activity android:name=".login.Login">
+
         </activity>
     </application>
 
