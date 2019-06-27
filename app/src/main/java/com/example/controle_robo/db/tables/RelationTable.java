@@ -10,8 +10,6 @@ public class RelationTable {
     public static final String R_ID_DESC= "r_desc";
 
 
-
-
     public static final String[] COLUMNS = {
             PRIMARY_KEY,
             R_ID_ROBOT,

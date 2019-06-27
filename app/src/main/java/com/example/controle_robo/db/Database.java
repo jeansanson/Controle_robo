@@ -9,7 +9,7 @@ import com.example.controle_robo.db.migration.CreateRobot;
 
 import java.util.HashMap;
 
-public class Database extends SQLiteOpenHelper {
+public class Database {/*
     public static final String TAG = "Database";
     public static final String DB_NAME = "wickedbotz_robos.db";
     public static final int CURRENT_VERSION = 1;
@@ -58,5 +58,5 @@ public class Database extends SQLiteOpenHelper {
     public interface DatabaseMigration {
         String up();
         String down();
-    }
+   }*/
 }
