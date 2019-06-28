@@ -72,6 +72,7 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
         conectarGoogleApi();
 
 
+
         //Logo do grupo de robotica
         imvLogo.setImageResource(R.drawable.logo);
 
@@ -284,6 +285,11 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
 
             }
         });
+
+    }
+
+    @Override
+    public void onBackPressed() {
 
     }
 
