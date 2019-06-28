@@ -15,10 +15,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 
+import com.example.controle_robo.dal.DalResponsible;
+import com.example.controle_robo.obj.Localizacao;
 import com.example.controle_robo.obj.Relacionamento;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static com.example.controle_robo.MainActivity.relationList;
@@ -27,9 +32,8 @@ import static com.example.controle_robo.MainActivity.relationList;
 public class UpdateRobot extends AppCompatActivity {
 
 
-    private EditText robotName;
+    private TextView robotName;
     private EditText robotDescription;
-    private Spinner categorySpinner;
     private Spinner statusSpinner;
     private Spinner responsibleSpinner;
     private Spinner localizationSpinner;
@@ -40,6 +44,7 @@ public class UpdateRobot extends AppCompatActivity {
 
     private static final String REL = "relacionamento";
     private static final String TAG = "Detail Robot";
+    private static final String LOC = "localization";
     private String responsible;
 
     @Override
@@ -55,7 +60,6 @@ public class UpdateRobot extends AppCompatActivity {
 
         robotDescription = findViewById(R.id.descriptionRobo);
         robotName = findViewById(R.id.robotName);
-        categorySpinner = findViewById(R.id.categorySpinner);
         statusSpinner = findViewById(R.id.statusSpinner);
         responsibleSpinner = findViewById(R.id.responsibleSpinner);
         localizationSpinner = findViewById(R.id.localizationSpinner);
@@ -64,17 +68,15 @@ public class UpdateRobot extends AppCompatActivity {
 
         Intent intent = getIntent();
         Relacionamento r = (Relacionamento) intent.getSerializableExtra(REL);
-
-
         robotName.setText(r.getRobName());
         robotDescription.setText(r.getDescription());
 
-        spinnerArrayAdapters();
+        //loadSpinnerDataResponsible();
+        loadSpinnerDataStatus();
+
         SaveRobotInfo(r);
-        btCategoryClick(r);
 
     }
-
 
     private void SaveRobotInfo(final Relacionamento r) {
         btSaveInfo.setOnClickListener(new View.OnClickListener() {
@@ -87,63 +89,49 @@ public class UpdateRobot extends AppCompatActivity {
         });
     }
 
-    private void btCategoryClick(final Relacionamento r) {
-        btCategory.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ArrayAdapter<CharSequence> categoryAdapter = ArrayAdapter.createFromResource(UpdateRobot.this,
-                        R.array.category_array, android.R.layout.simple_spinner_item);
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(UpdateRobot.this);
-                builder.setMessage("Categorias");
+    private void loadSpinnerDataResponsible() {
+        DalResponsible db = new DalResponsible(getApplicationContext());
+        List<String> labels = db.getAllLabels();
 
 
-                builder.setItems(R.array.category_array, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, labels);
 
-                    }
-                });
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-                AlertDialog alertDialog = builder.create();
-                alertDialog.show();
-            }
-        });
+        responsibleSpinner.setAdapter(dataAdapter);
     }
 
-    private void spinnerArrayAdapters(){
-        ArrayAdapter<CharSequence> categoryAdapter = ArrayAdapter.createFromResource(this,
-                R.array.category_array, android.R.layout.simple_spinner_item);
+    private void loadSpinnerDataStatus(){
+        List<String> labels = new MapaStatusRobo().getStatusList();
 
-        ArrayAdapter<CharSequence> statusAdapter = ArrayAdapter.createFromResource(this,
-                R.array.status_array, android.R.layout.simple_spinner_item);
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, labels);
 
-        ArrayAdapter<CharSequence> responsibleAdapter = ArrayAdapter.createFromResource(this,
-                R.array.responsible_array, android.R.layout.simple_spinner_item);
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        ArrayAdapter<CharSequence> localizationAdapter = ArrayAdapter.createFromResource(this,
-                R.array.localization_array, android.R.layout.simple_spinner_item);
+        statusSpinner.setAdapter(dataAdapter);
+    }
 
-        categoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        statusAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        responsibleAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        localizationAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+    private void loadSpinnerDataLocalization() {
+        /*Intent intent = getIntent();
+        List<Localizacao> localizationList = (List) intent.getSerializableExtra(LOC);
 
-        categorySpinner.setAdapter(categoryAdapter);
-        statusSpinner.setAdapter(statusAdapter);
-        responsibleSpinner.setAdapter(responsibleAdapter);
-        localizationSpinner.setAdapter(localizationAdapter);
+        List<String> labels = new ArrayList<>();
+        for (int i=0;i<localizationList.size();i++){
+            labels.add(localizationList.get(i).getCity());
+        }
 
-        categorySpinner.setOnItemSelectedListener(new SpinnerActivity());
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, labels);
 
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
+        localizationSpinner.setAdapter(dataAdapter);*/
     }
 
     private void saveInfo(Relacionamento r){
         int id=r.getId();
         for(int i=0;i<relationList.size();i++){
             if(id==relationList.get(i).getId()){
-                relationList.get(i).setRobName(robotName.getText().toString().trim());
                 relationList.get(i).setDescription(robotDescription.getText().toString().trim());
             }
         }

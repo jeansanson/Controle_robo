@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.controle_robo.obj.Localizacao;
 import com.example.controle_robo.obj.Relacionamento;
 
 import java.io.Serializable;
@@ -31,6 +32,7 @@ public class DetailRobot extends AppCompatActivity {
     private Map<Integer,String> statusMap;
     private static final String TAG = "Detail Robot";
     private static final String REL = "relacionamento";
+    private static final String LOC = "localization";
     private static final String RELLIST = "relacionamentoLista";
 
 
@@ -56,14 +58,19 @@ public class DetailRobot extends AppCompatActivity {
         Intent intent = getIntent();
 
         Relacionamento r = (Relacionamento) intent.getSerializableExtra(REL);
+        //List<Localizacao> localizationList = (List) intent.getSerializableExtra(LOC);
         List<Relacionamento> rl = (List) intent.getSerializableExtra(RELLIST);
+
+        if (statusMap.get(r.getStatus())==null){
+            r.setStatus(99);
+        }
 
         robotId.setText(String.valueOf(r.getId()));
         robotName.setText(r.getRobName());
         robotCategory.setText(r.getRobCategory());
-        robotStatus.setText("Status: "+statusMap.get(r.getStatus()));
-        robotResponsible.setText("Responsável: "+r.getResName());
-        robotLocalization.setText("Local: "+r.getLocCity());
+        robotStatus.setText(statusMap.get(r.getStatus()));
+        robotResponsible.setText(r.getResName());
+        robotLocalization.setText(r.getLocCity());
         robotDescription.setText(r.getDescription());
 
         updateRobotInfo(r,rl);
@@ -76,6 +83,7 @@ public class DetailRobot extends AppCompatActivity {
                 Intent intent = new Intent(DetailRobot.this, UpdateRobot.class);
                 intent.putExtra(REL, r);
                 //intent.putExtra(RELLIST, (Serializable) rl);
+                //intent.putExtra(LOC, (Serializable) localizationList);
                 startActivity(intent);
                 finish();
             }

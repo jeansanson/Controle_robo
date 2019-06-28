@@ -52,8 +52,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="Status"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/statusTexto"
         app:layout_constraintTop_toBottomOf="@+id/robotCategory" />
 
     <TextView
@@ -63,8 +63,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="Responsável"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/responsavelTexto"
         app:layout_constraintTop_toBottomOf="@+id/robotStatus" />
 
     <TextView
@@ -74,16 +74,19 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="Localização"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/LocalizationText"
         app:layout_constraintTop_toBottomOf="@+id/robotResponsible" />
 
     <TextView
         android:id="@+id/robotDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="32dp"
         android:text="Descrição"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.475"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/robotLocalization" />
 
@@ -93,8 +96,48 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        android:backgroundTint="#AB1E2f"
         android:text="Atualizar"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/statusTexto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="sans-serif"
+        android:text="Status: "
+        android:textAllCaps="false"
+        android:textColor="#AB1E2f"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/robotCategory" />
+
+    <TextView
+        android:id="@+id/responsavelTexto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Responsável: "
+        android:textColor="#AB1E2f"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/statusTexto" />
+
+    <TextView
+        android:id="@+id/LocalizationText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Localização: "
+        android:textColor="#AB1E2f"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/responsavelTexto" />
 
 </android.support.constraint.ConstraintLayout>

@@ -1,6 +1,8 @@
 package com.example.controle_robo;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class MapaStatusRobo {
@@ -8,7 +10,7 @@ public class MapaStatusRobo {
     private Map<Integer,String> status = new HashMap<Integer, String>();
 
     public Map loadStatus(){
-        status.put(-1,"Indefinido");
+        status.put(99,"Indefinido");
         status.put(0,"Descartado");
         status.put(1,"Pronto");
         status.put(2,"Revisão pendente");
@@ -27,5 +29,19 @@ public class MapaStatusRobo {
              }
         }
         return aux;
+    }
+
+    public List getStatusList(){
+        List<String> statusList = new ArrayList<>();
+
+        statusList.add("Descartado");
+        statusList.add("Pronto");
+        statusList.add("Revisão pendente");
+        statusList.add("Necessita reparos");
+        statusList.add("Em produção");
+        statusList.add("Em manutenção");
+        statusList.add("Indefinido");
+
+        return statusList;
     }
 }

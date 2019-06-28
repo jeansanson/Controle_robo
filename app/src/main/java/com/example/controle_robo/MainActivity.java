@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
     private static final String REL = "relacionamento";
+    private static final String LOC = "localization";
     private static final String RELLIST = "relacionamentoLista";
     private static final String SHARED_PREFS = "sharedPrefs";
     private List<Robo> robotList;
@@ -46,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btUpdateList;
     private Button btSearchList;
     private Button btLogOut;
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, DetailRobot.class);
                 intent.putExtra(REL, l.get(position));
                 //intent.putExtra(RELLIST, (Serializable) relationList);
+                //intent.putExtra(LOC, (Serializable) localizationList);
                 startActivity(intent);
             }
         });
@@ -251,7 +254,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String s) {
-            JSONreader jsonReader = new JSONreader();
+            JSONreader jsonReader = new JSONreader(context);
             String json = s;
             jsonReader.jsonToLists(json, robotList, categoryList, responsibleList, localizationList, relationList);
             robotListViewOnItemClickListener(relationList);
@@ -261,7 +264,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(String... strings) {
             Log.d(TAG, "doInBackground: " + strings[0]);
-            JSONreader jsonReader = new JSONreader();
+            JSONreader jsonReader = new JSONreader(context);
             String json = jsonReader.downloadJson(strings[0]);
             if (json == null) {
                 Log.e(TAG, "doInBackground: Erro baixando JSON");

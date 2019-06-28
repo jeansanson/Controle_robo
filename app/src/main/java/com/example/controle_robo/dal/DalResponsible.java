@@ -6,18 +6,22 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import com.example.controle_robo.db.migration.CreateResponsible;
 import com.example.controle_robo.db.migration.CreateRobot;
 import com.example.controle_robo.db.tables.ResponsibleTable;
 import com.example.controle_robo.db.tables.RobotTable;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DalResponsible {
     private static final String TAG = "DAL_RES";
 
     private SQLiteDatabase db;
-    private CreateRobot database;
+    private CreateResponsible database;
 
     public DalResponsible(Context context) {
-        database = new CreateRobot(context);
+        database = new CreateResponsible(context);
     }
 
     public boolean insert(String name) {
@@ -113,6 +117,26 @@ public class DalResponsible {
 
         db.close();
         return cursor;
+    }
+
+    public List<String> getAllLabels(){
+        List<String> list = new ArrayList<String>();
+
+        String selectQuery = "SELECT  * FROM " + ResponsibleTable.TABLE_NAME;
+
+        SQLiteDatabase db = database.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                list.add(cursor.getString(1));
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        db.close();
+
+        return list;
     }
 
 }

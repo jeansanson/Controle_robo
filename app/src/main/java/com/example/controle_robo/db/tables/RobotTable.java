@@ -8,7 +8,7 @@ public class RobotTable {
     public static final String NAME = "name";
     public static final String CATEGORY = "category";
     public static final String STATUS = "status";
-    public static final String LOCAL = "status";
+    public static final String LOCAL = "localization";
 
 
     public static final String[] COLUMNS = {

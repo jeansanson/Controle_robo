@@ -1,8 +1,11 @@
 package com.example.controle_robo;
 
+import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.example.controle_robo.dal.DalResponsible;
+import com.example.controle_robo.db.migration.CreateRobot;
 import com.example.controle_robo.obj.Categoria;
 import com.example.controle_robo.obj.Relacionamento;
 import com.example.controle_robo.obj.Robo;
@@ -21,6 +24,12 @@ import java.util.List;
 
 
 public class JSONreader {
+
+    private Context context;
+
+    public JSONreader(Context context) {
+        this.context = context;
+    }
 
     public void jsonToLists (String jsonString, List robotList, List categoryList, List responsibleList, List localizationList, List relationList) {
         try {
@@ -58,6 +67,8 @@ public class JSONreader {
                         responsavel.getInt("id"),
                         responsavel.getString("nome")
                         );
+                DalResponsible db = new DalResponsible(context);
+                db.insert(r.getName());
                 responsibleList.add(r);
                 Log.d(TAG, "leFaturasDeJSONString: Responsável inserido em database id:"+r.getId());
             }
