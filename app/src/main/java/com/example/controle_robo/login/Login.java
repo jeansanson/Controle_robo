@@ -3,6 +3,7 @@ package com.example.controle_robo.login;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -33,7 +34,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.GoogleAuthProvider;
 
-public class Login extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
+public class Login extends AppCompatActivity  implements GoogleApiClient.OnConnectionFailedListener {
 
     private EditText barraEmail;
     private EditText barraSenha;
@@ -71,8 +72,6 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
 
         conectarGoogleApi();
 
-
-
         //Logo do grupo de robotica
         imvLogo.setImageResource(R.drawable.logo);
 
@@ -101,6 +100,10 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
 
                 else{
                     if (cbLembrarSenha.isChecked()) { //Se a checkbox esta clicada
+
+                        Intent intent = new Intent(Login.this, TelaCarregamento.class);
+                        startActivity(intent);
+
                         prefEditor.putString(getString(R.string.checkbox), "True"); //Vai abrir o app com a checkbox clicada
                         prefEditor.commit();
 
@@ -116,6 +119,9 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
 
 
                     } else {  //Se a checkbox não esta clicada apenas faz o login e nao salva nada
+
+                        Intent intent = new Intent(Login.this, TelaCarregamento.class);
+                        startActivity(intent);
 
                         SharedPreferences config =  PreferenceManager.getDefaultSharedPreferences(getBaseContext());
                         SharedPreferences.Editor editor = config.edit();
@@ -288,7 +294,7 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
 
     }
 
-    @Override
+    @Override  //Bloqueia o Botão de voltar do celular
     public void onBackPressed() {
 
     }
