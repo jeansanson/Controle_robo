@@ -72,7 +72,7 @@ public class UpdateRobot extends AppCompatActivity {
         robotDescription.setText(r.getDescription());
 
         //loadSpinnerDataResponsible();
-        loadSpinnerDataStatus();
+        loadSpinnerDataStatus(r);
 
         SaveRobotInfo(r);
 
@@ -102,8 +102,16 @@ public class UpdateRobot extends AppCompatActivity {
         responsibleSpinner.setAdapter(dataAdapter);
     }
 
-    private void loadSpinnerDataStatus(){
+    private void loadSpinnerDataStatus(Relacionamento r){
         List<String> labels = new MapaStatusRobo().getStatusList();
+        String statusRobo=r.getStatus();
+
+        for(int i=0;i<labels.size();i++){
+            if(labels.get(i).compareToIgnoreCase(r.getStatus())==0){
+                labels.set(i, labels.get(0));
+                labels.set(0, statusRobo);
+            }
+        }
 
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, labels);
 

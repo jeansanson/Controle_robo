@@ -7,7 +7,7 @@ public class Relacionamento  implements Serializable {
     int id;
     String robName;
     String robCategory;
-    int status;
+    String status;
     String resName;
     String locCity;
     String description;
@@ -15,7 +15,7 @@ public class Relacionamento  implements Serializable {
     public Relacionamento() {
     }
 
-    public Relacionamento(int id, String robName, String robCategory, int status, String resName, String locCity, String description) {
+    public Relacionamento(int id, String robName, String robCategory, String status, String resName, String locCity, String description) {
         this.id = id;
         this.robName = robName;
         this.robCategory = robCategory;
@@ -29,7 +29,7 @@ public class Relacionamento  implements Serializable {
         this.id = id;
         this.robName = rob_name;
         this.robCategory = rob_category;
-        this.status = -1;
+        this.status = "indefinido";
         this.resName="indefinido";
         this.locCity="indefinido";
         this.description="Descrição vazia";
@@ -59,13 +59,11 @@ public class Relacionamento  implements Serializable {
         this.robCategory = robCategory;
     }
 
-    public int getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
-        this.status = status;
-    }
+    public void setStatus(String status) { this.status = status; }
 
     public String getResName() {
         return resName;

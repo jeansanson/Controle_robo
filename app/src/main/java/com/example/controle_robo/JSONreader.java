@@ -5,6 +5,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.example.controle_robo.dal.DalResponsible;
+import com.example.controle_robo.dal.DalRobot;
 import com.example.controle_robo.db.migration.CreateRobot;
 import com.example.controle_robo.obj.Categoria;
 import com.example.controle_robo.obj.Relacionamento;
@@ -67,8 +68,6 @@ public class JSONreader {
                         responsavel.getInt("id"),
                         responsavel.getString("nome")
                         );
-                DalResponsible db = new DalResponsible(context);
-                db.insert(r.getName());
                 responsibleList.add(r);
                 Log.d(TAG, "leFaturasDeJSONString: Responsável inserido em database id:"+r.getId());
             }
@@ -89,6 +88,8 @@ public class JSONreader {
                         robo.getString("nome"),
                         robo.getString("categoria")
                 );
+                DalRobot dalRobot = new DalRobot(context);
+                dalRobot.insert(r.getRobName(), r.getRobCategory(), "Indefinido", "Indefinido");
                 relationList.add(r);
                 Log.d(TAG, "leFaturasDeJSONString: Robo inserido em database id:"+r.getId());
             }

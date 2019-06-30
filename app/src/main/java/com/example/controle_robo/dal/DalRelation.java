@@ -6,7 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
-import com.example.controle_robo.db.migration.CreateRobot;
+import com.example.controle_robo.db.migration.CreateRelation;
 import com.example.controle_robo.db.tables.RelationTable;
 import com.example.controle_robo.db.tables.ResponsibleTable;
 
@@ -14,10 +14,10 @@ public class DalRelation {
     private static final String TAG = "DAL_RES";
 
     private SQLiteDatabase db;
-    private CreateRobot database;
+    private CreateRelation database;
 
     public DalRelation(Context context) {
-        database = new CreateRobot(context);
+        database = new CreateRelation(context);
     }
 
     public boolean insert(Integer idRobot, Integer idResponsible, String description) {
