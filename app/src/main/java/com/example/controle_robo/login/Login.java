@@ -76,7 +76,7 @@ public class Login extends AppCompatActivity  implements GoogleApiClient.OnConne
         //Logo do grupo de robotica
         imvLogo.setImageResource(R.drawable.logo);
 
-        //SharedPreferences
+        //SharedPreferences, salvar as informações
         pref = PreferenceManager.getDefaultSharedPreferences(this);
         prefEditor = pref.edit();
 
@@ -98,7 +98,6 @@ public class Login extends AppCompatActivity  implements GoogleApiClient.OnConne
                 if (barraEmail.length() == 0 || barraSenha.length() == 0){  //Se algum campo estiver vazio aparece a mensagem
                     Toast.makeText(Login.this, "Campos solicitados vazios", Toast.LENGTH_SHORT).show();
                 }
-
                 else{
                     if (cbLembrarSenha.isChecked()) { //Se a checkbox esta clicada
 
@@ -117,8 +116,6 @@ public class Login extends AppCompatActivity  implements GoogleApiClient.OnConne
                         prefEditor.commit();
 
                         login(email, senha);
-
-
                     } else {  //Se a checkbox não esta clicada apenas faz o login e nao salva nada
 
                         Intent intent = new Intent(Login.this, TelaCarregamento.class);
@@ -129,42 +126,13 @@ public class Login extends AppCompatActivity  implements GoogleApiClient.OnConne
                         editor.clear();   //Retira os dados guardados no SharedPreferences
                         editor.commit();  //Salva as configurações
 
-                        //Toast.makeText(Login.this, "Dados salvos foram apagados", Toast.LENGTH_SHORT).show();
-
                         String email1 = barraEmail.getText().toString().trim();
                         String senha1 = barraSenha.getText().toString().trim();
                         login(email1, senha1);
 
                     }}
-
-               /* String email = barraEmail.getText().toString().trim();
-                String senha = barraSenha.getText().toString().trim();
-                login(email, senha);*/
-
                 }
-
         });
-
-        /*btnApagar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                SharedPreferences config =  PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-                SharedPreferences.Editor editor = config.edit();
-                editor.clear();   //Retira os dados guardados no SharedPreferences
-                editor.commit();  //Salva as configurações
-                Toast.makeText(Login.this, "Dados salvos foram apagados", Toast.LENGTH_SHORT).show();
-
-                barraEmail.setText("");
-                barraSenha.setText("");
-
-                if (cbLembrarSenha.isChecked()){
-                    cbLembrarSenha.setChecked(false);
-                }
-
-
-            }
-        });*/
 
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -182,8 +150,7 @@ public class Login extends AppCompatActivity  implements GoogleApiClient.OnConne
             }
         });
 
-
-        Bundle bundle = getIntent().getExtras();
+        Bundle bundle = getIntent().getExtras();  //Pega o login e senha que foram passados no cadastro
 
         if(bundle != null){
             String email2 = bundle.getString("email");
@@ -211,7 +178,6 @@ public class Login extends AppCompatActivity  implements GoogleApiClient.OnConne
             if (result.isSuccess()){
                 GoogleSignInAccount account = result.getSignInAccount();
                 loginFirebase(account);
-
             }
         }
         else{
@@ -270,19 +236,13 @@ public class Login extends AppCompatActivity  implements GoogleApiClient.OnConne
         firebaseAuth.signInWithEmailAndPassword(email, senha).addOnCompleteListener(Login.this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-
                     if (task.isSuccessful()) {  //Se o login é valido
                         Intent intent = new Intent(Login.this, MainActivity.class);
                         startActivity(intent);
                     } else {
                         Toast.makeText(Login.this, "Login Invalido", Toast.LENGTH_SHORT).show();
                     }
-
                 }
-
-
-
-
         })
         .addOnFailureListener(new OnFailureListener() {
             @Override

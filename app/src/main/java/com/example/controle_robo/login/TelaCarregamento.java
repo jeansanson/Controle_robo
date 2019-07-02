@@ -45,7 +45,6 @@ public class TelaCarregamento extends AppCompatActivity {
         Intent intent = new Intent(TelaCarregamento.this, MainActivity.class);
         startActivity(intent);
 
-
         finish();
     }
 
