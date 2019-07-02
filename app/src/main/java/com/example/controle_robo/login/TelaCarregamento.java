@@ -1,6 +1,7 @@
 package com.example.controle_robo.login;
 
 import android.content.Intent;
+import android.nfc.Tag;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -25,9 +26,9 @@ public class TelaCarregamento extends AppCompatActivity {
 
         gifRobo = findViewById(R.id.gifRobo);
 
-        Glide.with(this)
+       /* Glide.with(this)
                 .load("https://media0.giphy.com/media/MkcgltZ9e1UI/giphy.gif")
-                .into(gifRobo);
+                .into(gifRobo);*/
 
         Handler handler = new Handler();
 
@@ -35,15 +36,17 @@ public class TelaCarregamento extends AppCompatActivity {
             @Override
             public void run() {
                 telaLogin();
-                finish();
             }
-        }, 4000);
+        }, 3000);
 
     }
 
     private void telaLogin() {
         Intent intent = new Intent(TelaCarregamento.this, MainActivity.class);
         startActivity(intent);
+
+
+        finish();
     }
 
     @Override  //Bloqueia o Botão de voltar do celular
