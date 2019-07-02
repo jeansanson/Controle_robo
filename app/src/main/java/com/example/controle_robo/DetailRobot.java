@@ -62,7 +62,7 @@ public class DetailRobot extends AppCompatActivity {
         List<Relacionamento> rl = (List) intent.getSerializableExtra(RELLIST);
 
         if (statusMap.get(r.getStatus())==null){
-            r.setStatus(99);
+            r.setStatus("99");
         }
 
         robotId.setText(String.valueOf(r.getId()));

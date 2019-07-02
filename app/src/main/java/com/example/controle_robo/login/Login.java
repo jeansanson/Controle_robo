@@ -228,7 +228,7 @@ public class Login extends AppCompatActivity  implements GoogleApiClient.OnConne
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             Toast.makeText(Login.this, "Login realizado com sucesso", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(Login.this, MainActivity.class);
+                            Intent intent = new Intent(Login.this, TelaCarregamento.class);
                             startActivity(intent);
                         }
                         else{
